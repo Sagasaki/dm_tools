@@ -3,6 +3,8 @@
 ## Copyright 2018 Jared C. Allen
 ##
 
+from dice import dice
+
 """
 DM's Tools is a suite of useful tools to help a DM prepare for and run
 a Dungeons and Dragons (5e) session.
@@ -15,5 +17,5 @@ This program should be able to:
 
 The dm_tools.py module is the MAIN file for the DM's Tools program.
 """
-
+dice.roll_die()
 print("This program is working.")
