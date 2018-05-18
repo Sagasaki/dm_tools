@@ -12,31 +12,37 @@ import random
 import re
 from colorama import Fore, Style
 
-def die_roll():
+def die_roller():
     """Dice roll engine"""
-    die_input = input("Specify die roll in format '2d6': ").split("d")
-    die = [int(value) for value in die_input]
-    result = 0
-    for x in range (0, die[0]):
-        result = result + random.randint(1, die[1])
-    print(Fore.GREEN + "Rolling %i d %i... " % (die[0], die[1]) + str(result), Style.RESET_ALL)
+    die_input = input("Specify die roll in format '2d6(+/-)3': ")
+    if die_input == 'q':
+        print("Thank you for using the D&D Dice Roller. Goodbye!")
+        exit()
+    else:
+        die = [int(x) for x in re.findall('\\d+', die_input)]
+        try:
+            if len(die) == 1:
+                print(Fore.GREEN + "Rolling a d%i... " % die[0] + str(random.randint(1, die[0])), Style.RESET_ALL)
+                die_roller()
+            else:
+                result = 0
+                for y in range (0, die[0]):
+                    result = result + random.randint(1, die[1])
+                if '+' in die_input:
+                    result = result + die[2]
+                    print(Fore.GREEN + "Rolling %id%i +%i... " % (die[0], die[1], die[2]) + str(result), Style.RESET_ALL)
+                elif '-' in die_input:
+                    result = result - die[2]
+                    print(Fore.GREEN + "Rolling %id%i -%i... " % (die[0], die[1], die[2]) + str(result), Style.RESET_ALL)
+                else:
+                    print(Fore.GREEN + "Rolling %id%i... " % (die[0], die[1]) + str(result), Style.RESET_ALL)
+        except IndexError:
+            print("Invalid input. Type q to exit.")
+            pass
 
-#while True:
-#        die_roll()
 
-def die_roll2():
-    """Dice roll engine"""
-    die_input = input("Specify die roll in format '2d6+3': ")
-    die = [int(x) for x in re.findall('\\d+', die_input)]
-    result = 0
-    for y in range (0, die[0]):
-        result = result + random.randint(1, die[1])
-    if '+' in die_input:
-        result = result + die[2]
-    elif '-' in die_input:
-        result = result - die[2]
-    print(Fore.GREEN + "Rolling %i d %i... " % (die[0], die[1]) + str(result), Style.RESET_ALL)
+print("D&D Dice Roller. Type 'q' to exit.")
 
 while True:
-        die_roll2()
+        die_roller()
 
