@@ -19,5 +19,16 @@ def roll_die():
         return
     print(Fore.GREEN + "Rolling a d%i... " % (die), + random.randint(1, die), Style.RESET_ALL)
 
+#while True:
+#    roll_die()
+
+def die_roll():
+    """Dice roll engine"""
+    die_input = input("Specify die roll in format '1d6': ").split('d')
+    die = [int(value) for value in die_input]
+    result = str(random.randint(1, die[1]) * die[0])
+    print(Fore.GREEN + "Rolling %i d %i... " % (die[0], die[1]) + result, Style.RESET_ALL)
+
 while True:
-    roll_die()
+        die_roll()
+
