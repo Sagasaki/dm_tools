@@ -16,10 +16,12 @@ This program should be able to:
 The dm_tools.py module is the MAIN file for the DM's Tools program.
 """
 
+import os
 from dice.dice import die_roller
 from colorama import Fore, Style
 
 def main():
+    os.system('clear')
     print(Fore.GREEN + """\nDungeon Master's Digital Tool Set
     Copyright 2018 Jared C. Allen\n""", Style.RESET_ALL)
 
