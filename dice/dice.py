@@ -16,8 +16,8 @@ def die_roller():
     """Dice roll engine"""
     die_input = input("Specify die roll in format '2d6(+/-)3': ")
     if die_input == 'q':
-        print("Thank you for using the D&D Dice Roller. Goodbye!")
-        exit()
+        print("Thank you for using the D&D Dice Roller. Goodbye!\n")
+        return
     else:
         die = [int(x) for x in re.findall('\\d+', die_input)]
         try:
@@ -31,18 +31,14 @@ def die_roller():
                 if '+' in die_input:
                     result = result + die[2]
                     print(Fore.GREEN + "Rolling %id%i +%i... " % (die[0], die[1], die[2]) + str(result), Style.RESET_ALL)
+                    die_roller()
                 elif '-' in die_input:
                     result = result - die[2]
                     print(Fore.GREEN + "Rolling %id%i -%i... " % (die[0], die[1], die[2]) + str(result), Style.RESET_ALL)
+                    die_roller()
                 else:
                     print(Fore.GREEN + "Rolling %id%i... " % (die[0], die[1]) + str(result), Style.RESET_ALL)
+                    die_roller()
         except IndexError:
             print("Invalid input. Type q to exit.")
-            pass
-
-
-print("D&D Dice Roller. Type 'q' to exit.")
-
-while True:
-        die_roller()
-
+            die_roller()
