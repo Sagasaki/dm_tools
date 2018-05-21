@@ -40,5 +40,5 @@ def die_roller():
                     print(Fore.GREEN + "Rolling %id%i... " % (die[0], die[1]) + str(result), Style.RESET_ALL)
                     die_roller()
         except IndexError:
-            print("Invalid input. Type q to exit.")
+            print(Fore.RED + "Invalid input. Type q to exit.", Style.RESET_ALL)
             die_roller()

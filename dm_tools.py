@@ -22,10 +22,10 @@ from colorama import Fore, Style
 
 def main():
     os.system('clear')
-    print(Fore.GREEN + """\nDungeon Master's Digital Tool Set
+    print(Fore.RED + Style.BRIGHT + """\nDungeon Master's Digital Tool Set
     Copyright 2018 Jared C. Allen\n""", Style.RESET_ALL)
 
-    print(Fore.RED + """Please choose from the following options:
+    print(Fore.BLUE + Style.BRIGHT + """Please choose from the following options:
     1. D&D Dice Roller\n    """ + Style.DIM +
     """2. Player Character Manager
     3. Dungeon Map Editor
@@ -36,11 +36,11 @@ def main():
     menu_opt = input()
 
     if menu_opt == '1':
-        print(Fore.RED + "\nD&D Dice Roller. Type q to exit.\n", Style.RESET_ALL)
+        print(Fore.BLUE + Style.BRIGHT + "\nD&D Dice Roller. Type q to exit.\n", Style.RESET_ALL)
         die_roller()
 
     elif menu_opt == 'q':
-        print("\nThank you for using the Dungeon Master's Digital Tool Set. Goodbye!\n")
+        print(Fore.MAGENTA + "\nThank you for using the Dungeon Master's Digital Tool Set. Goodbye!\n")
         exit()
 
     else:
