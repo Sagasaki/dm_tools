@@ -18,6 +18,7 @@ The dm_tools.py module is the MAIN file for the DM's Tools program.
 
 import os
 from dice.dice import die_roller
+from char_man_dir.character import char_manager
 from colorama import Fore, Style
 
 def main():
@@ -38,6 +39,10 @@ def main():
     if menu_opt == '1':
         print(Fore.BLUE + Style.BRIGHT + "\nD&D Dice Roller. Type q to exit.\n", Style.RESET_ALL)
         die_roller()
+
+    elif menu_opt == '2':
+        print(Fore.BLUE + Style.BRIGHT + "\nD&D Character Manager. Type q to exit.\n", Style.RESET_ALL)
+        char_manager()
 
     elif menu_opt == 'q':
         print(Fore.MAGENTA + "\nThank you for using the Dungeon Master's Digital Tool Set. Goodbye!\n")
