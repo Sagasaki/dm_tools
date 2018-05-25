@@ -5,6 +5,10 @@
 import pickle
 import os
 
+char_list = []
+
+
+
 class Character:
     """Docstring"""
 
@@ -27,19 +31,23 @@ class Character:
         print(self.name + " the " + self.race + " " + self.cls)
 
 
-def write_out(char_list):
-    with open("characters.dat", "wb+") as file:
+
+def write_out():
+    global char_list
+    with open("characters.dat", "wb") as file:
         pickle.dump(char_list, file)
 
+
 def char_manager():
-    char_list = []
+
+    global char_list
 
     # read in previously created characters
     try:
         with open("characters.dat", 'rb') as file:
             char_list = pickle.load(file)
     except (FileNotFoundError, EOFError):
-        pass
+        os.system('touch characters.dat')
 
     print("What would you like to do?")
     print("""Press q to exit.
@@ -62,7 +70,7 @@ def char_manager():
     elif selection == '2':
         char = Character.create()
         char_list.append(char)
-        write_out(char_list)
+        write_out()
         char_manager()
 
     elif selection == '3':
@@ -80,7 +88,7 @@ def char_manager():
         for char in char_list:
             if char.name == name:
                 char.update_class()
-                write_out(char_list)
+                write_out()
             else:
                 print("No character with this name")
         char_manager()
@@ -92,7 +100,7 @@ def char_manager():
                 sel = input("Are you certain you wish to delete this character? Deletions are permanant. Type Y to continue.")
                 if sel == 'Y':
                     char_list.remove(char)
-                    write_out(char_list)
+                    write_out()
                     print("Character " + name + " has been deleted.")
                 else:
                     print("Character not deleted.")
@@ -107,7 +115,3 @@ def char_manager():
     else:
         print("Invalid selection")
         char_manager()
-
-    # save character list to file
-    with open("characters.dat", "wb+") as file:
-        pickle.dump(char_list, file)
