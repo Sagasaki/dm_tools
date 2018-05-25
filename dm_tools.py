@@ -16,7 +16,35 @@ This program should be able to:
 The dm_tools.py module is the MAIN file for the DM's Tools program.
 """
 
-from dice import dice
+import os
+from dice.dice import die_roller
+from colorama import Fore, Style
 
-dice.roll_die()
-print("This program is working.")
+def main():
+    os.system('clear')
+    print(Fore.RED + Style.BRIGHT + """\nDungeon Master's Digital Tool Set
+    Copyright 2018 Jared C. Allen\n""", Style.RESET_ALL)
+
+    print(Fore.BLUE + Style.BRIGHT + """Please choose from the following options:
+    1. D&D Dice Roller\n    """ + Style.DIM +
+    """2. Player Character Manager
+    3. Dungeon Map Editor
+    4. Encounter Manager
+    5. D&D Session View
+    q. Quit""", Style.RESET_ALL)
+
+    menu_opt = input()
+
+    if menu_opt == '1':
+        print(Fore.BLUE + Style.BRIGHT + "\nD&D Dice Roller. Type q to exit.\n", Style.RESET_ALL)
+        die_roller()
+
+    elif menu_opt == 'q':
+        print(Fore.MAGENTA + "\nThank you for using the Dungeon Master's Digital Tool Set. Goodbye!\n")
+        exit()
+
+    else:
+        main()
+
+while True:
+    main()
