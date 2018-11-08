@@ -7,9 +7,8 @@ class DiceInterface(Dice):
 
     def dice_prompt(self):
         x = Dice()
-        max_roll = int(input('Specify die size: '))
-        roll = x.roll(max_roll)
-        return roll
+        result = x.custom_roll(1, 20, '-', 5)
+        print(result)
 
 
     def interface(self):
@@ -17,4 +16,4 @@ class DiceInterface(Dice):
 
 
 x = DiceInterface()
-print(x.interface())
+x.interface()
