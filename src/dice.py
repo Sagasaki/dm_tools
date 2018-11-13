@@ -3,6 +3,7 @@
 
 import random
 import re
+import numpy as np
 
 
 class Dice:
@@ -27,23 +28,23 @@ class Dice:
 class DiceInterface(Dice):
     def dice_prompt(self):
         die_input = input("Specify die roll in format '2d6(+/-)3': ")
-        die = [i for i in re.findall('\\d+', die_input)]
+        die = np.array([i for i in re.findall('\\d+', die_input)]).astype(int)
         if die_input == 'q':
             exit()
         else:
             try:
                 if len(die) == 1:
-                    print("Rolling a d{}... {}".format(die[0], super().basic_roll(int(die[0]))))
+                    print("Rolling a d{}... {}".format(die[0], super().basic_roll(die[0])))
                     self.dice_prompt()
                 else:
                     result = 0
-                    for y in range(0, int(die[0])):
-                        result = result + super().basic_roll(int(die[1]))
+                    for y in range(0, die[0]):
+                        result = result + super().basic_roll(die[1])
                     if '+' in die_input:
-                        result = result + int(die[2])
+                        result = result + die[2]
                         print("Rolling {}d{} +{}... {}".format(die[0], die[1], die[2], result))
                     elif '-' in die_input:
-                        result = result - int(die[2])
+                        result = result - die[2]
                         print("Rolling {}d{} -{}... {}".format(die[0], die[1], die[2], result))
                     else:
                         print("Rolling {}d{}... {}".format(die[0], die[1], result))
