@@ -1,7 +1,7 @@
-##
-## Dungeon Master's Digital Tool Set
-## Copyright 2018 Jared C. Allen
-##
+#
+# Dungeon Master's Digital Tool Set
+# Copyright 2018 Jared C. Allen
+#
 
 """
 DM's Tools is a suite of useful tools to help a DM prepare for and run
@@ -44,6 +44,6 @@ def main():
     else:
         main()
 
+
 while True:
     main()
-
