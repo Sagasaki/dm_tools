@@ -15,7 +15,9 @@ class Dice:
 
     def custom_roll(self, multiple, die, modifier, modification):
         """ Allows for rolling die of the format 3d6+5 """
-        result = multiple * self.basic_roll(die)
+        result = 0
+        for y in range(0, multiple):
+            result = result + self.basic_roll(die)
         if modifier == '+':
             result = result + modification
         elif modifier == '-':
@@ -37,19 +39,24 @@ class DiceInterface(Dice):
                     print("Rolling a d{}... {}".format(die[0], super().basic_roll(die[0])))
                     self.dice_prompt()
                 else:
-                    result = 0
-                    for y in range(0, die[0]):
-                        result = result + super().basic_roll(die[1])
                     if '+' in die_input:
-                        result = result + die[2]
-                        print("Rolling {}d{} +{}... {}".format(die[0], die[1], die[2], result))
+                        print("Rolling {}d{} +{}... {}".format(die[0], die[1], die[2],
+                                                               super().custom_roll(die[0], die[1], '+', die[2])))
                     elif '-' in die_input:
-                        result = result - die[2]
-                        print("Rolling {}d{} -{}... {}".format(die[0], die[1], die[2], result))
+                        print("Rolling {}d{} -{}... {}".format(die[0], die[1], die[2],
+                                                               super().custom_roll(die[0], die[1], '-', die[2])))
                     else:
-                        print("Rolling {}d{}... {}".format(die[0], die[1], result))
+                        print("Rolling {}d{}... {}".format(die[0], die[1],
+                                                           super().custom_roll(die[0], die[1], 0, 0)))
             except IndexError:
-                print("Invalid input. Type q to exit.")
+                if '+' in die_input:
+                    print("Rolling d{} +{}... {}".format(die[0], die[1],
+                                                         super().custom_roll(1, die[0], '+', die[1])))
+                elif '-' in die_input:
+                    print("Rolling d{} -{}... {}".format(die[0], die[1],
+                                                         super().custom_roll(1, die[0], '-', die[1])))
+                else:
+                    print("Invalid input. Type q to exit.")
                 pass
 
     def interface(self):
