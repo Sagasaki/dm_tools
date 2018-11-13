@@ -16,6 +16,8 @@ This program should be able to:
 import os
 from dice import DiceInterface
 
+dice = DiceInterface()
+
 
 def main():
     os.system('clear')
@@ -33,8 +35,7 @@ def main():
 
     if menu_opt == '1':
         print("\nD&D Dice Roller. Type q to exit.\n")
-        x = DiceInterface()
-        x.interface()
+        dice.interface()
 
     elif menu_opt == 'q':
         print("\nThank you for using the Dungeon Master's Digital Tool Set. Goodbye!\n")

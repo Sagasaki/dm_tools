@@ -33,12 +33,12 @@ class DiceInterface(Dice):
         else:
             try:
                 if len(die) == 1:
-                    print("Rolling a d%i... " % die[0] + self.basic_roll(die[0]))
+                    print("Rolling a d%i... " % die[0] + super().basic_roll(die[0]))
                     dice_prompt()
                 else:
                     result = 0
                     for y in range (0, die[0]):
-                        result = result + self.basic_roll(die[1])
+                        result = result + super().basic_roll(die[1])
                     if '+' in die_input:
                         result = result + die[2]
                         print("Rolling %id%i +%i... " % (die[0], die[1], die[2]) + str(result))
@@ -55,3 +55,4 @@ class DiceInterface(Dice):
     def interface(self):
         while True:
             self.dice_prompt()
+
